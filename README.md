@@ -61,20 +61,19 @@ Each subject should have corresponding `.mat` or similarly-loadable matrices nam
 
 ## How to run
 
-The repository contains two main scripts:
+The repository contains one main scripts:
 
 - `GraSTIACL.py` — training and evaluation pipeline. Loads processed data, constructs graphs, trains the model, and logs metrics.
-- `GraSTI.py` — core model and information-bottleneck implementation.
 
 Run training with:
 
 ```bash
-python GraSTIACL.py --data_root ./data --dataset ADNI --epochs 200 --batch_size 16
+python GraSTIACL.py
 ```
 
 Example arguments (implementations may vary; check `GraSTIACL.py` for supported CLI flags):
 
-- `--data_root` : path to the `data/` directory.
+- `--root` : path to the `data/` directory.
 - `--dataset` : one of `ADNI`, `SRPBS`, `BD`, or `ALL` (if supported).
 - `--epochs` : number of epochs.
 - `--batch_size` : training batch size.
