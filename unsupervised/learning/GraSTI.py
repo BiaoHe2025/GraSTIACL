@@ -39,7 +39,6 @@ class ToyNet(nn.Module):
         std = self.FC_var(statistics)
         std = std.view(1, -1)
         std = F.softplus(self.FC_var_trans(std) - 5, beta=1)
-        # std = F.softplus(std - 5, beta=1)
         encoding = self.reparametrize_n(mu, std, num_sample)
         logit = self.decode(encoding)
         if num_sample == 1:
@@ -70,29 +69,10 @@ class ToyNet(nn.Module):
             xavier_init(self._modules[m])
 
     def get_mu_std_logits(self, edge_weight):
-        # edge_weight_reshaped = torch.reshape(edge_weight, [-1, self.in_feature_num, 90, 90])
-        # batch_num = edge_weight_reshaped.shape[0]
-        # row_num = edge_weight_reshaped.shape[2]
         edge_logits = torch.tensor([]).cuda()
         mu = torch.tensor([]).cuda()
         std = torch.tensor([]).cuda()
-        # for i in range(batch_num):
-        #     mu_batch = []
-        #     std_batch = []
-        #     for j in range(row_num):
-        #         edge_weight_batch = edge_weight_reshaped[i, :, j, :]
-        #         edge_weight_batch = edge_weight_batch.squeeze()
-        #         edge_weight_batch = edge_weight_batch.transpose(0, 1)
-        #         (mu_row, std_row), edge_logits_row = self.forward(edge_weight_batch.squeeze())
-        #         edge_logits = torch.cat((edge_logits.squeeze(), edge_logits_row.squeeze()), 0)
-        #         edge_logits.squeeze()
-        #         mu_batch.append(mu_row)
-        #         std_batch.append(std_row)
-        #     mu_batch = torch.stack(mu_batch)
-        #     std_batch = torch.stack(std_batch)
-        #     mu = torch.cat((mu, torch.mean(mu_batch, 0)), 0)
-        #     std = torch.cat((std, torch.mean(std_batch, 0)), 0)
-        edge_weight_reshaped = torch.reshape(edge_weight, [-1, 90, 90])
+        edge_weight_reshaped = torch.reshape(edge_weight, [-1, 90, 90]) #Here 90 is the number of ROI
         for i in range(edge_weight_reshaped.shape[0]):
             mu_batch = []
             std_batch = []
@@ -116,3 +96,4 @@ def xavier_init(ms):
         if isinstance(m, nn.Linear) or isinstance(m, nn.Conv2d):
             nn.init.xavier_uniform(m.weight, gain=nn.init.calculate_gain('relu'))
             m.bias.data.zero_()
+
