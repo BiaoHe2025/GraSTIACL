@@ -76,31 +76,19 @@ def run(args):
 
     dataloader = DataLoader(dataset, batch_size=args.batch_size, shuffle=True, drop_last=True)
     beta = 0.5
-    encoder = TA_encoder.TAEncoder(num_dataset_features=3, beta=beta, emb_dim=args.emb_dim, num_gc_layers=args.num_gc_layers,
-                             drop_ratio=args.drop_ratio, pooling_type=args.pooling_type)
-    grasti = GraSTI.ToyNet(input_dim=90, hidden_dim=args.vib_hidden_dim)
-    print("Encoder parameter count:")
-    encoder_total_params = sum(p.numel() for p in encoder.parameters() if p.requires_grad)
-    print(f"Total: {encoder_total_params}")
-    print("GraSTI parameter count:")
-    GraSTI_total_params = sum(p.numel() for p in grasti.parameters() if p.requires_grad)
-    print(f"Total: {GraSTI_total_params}")
+
     model = GInfoMinMax(
         TA_encoder.TAEncoder(num_dataset_features=3, beta=beta, emb_dim=args.emb_dim, num_gc_layers=args.num_gc_layers,
                              drop_ratio=args.drop_ratio, pooling_type=args.pooling_type),
         GraSTI.ToyNet(input_dim=90, hidden_dim=args.vib_hidden_dim),
         args.emb_dim).to(device)
-    print("Model parameter count:")
-    model_total_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
-    print(f"Total: {model_total_params}")
+   
     model_optimizer = torch.optim.Adam(model.parameters(), lr=args.model_lr)
     view_learner = ViewLearner(
         TA_encoder.TAEncoder(num_dataset_features=3, beta=beta, emb_dim=args.emb_dim, num_gc_layers=args.num_gc_layers,
                              drop_ratio=args.drop_ratio, pooling_type=args.pooling_type),
         GraSTI.ToyNet(input_dim=90, hidden_dim=args.vib_hidden_dim)).to(device)
-    print("View parameter count:")
-    view_total_params = sum(p.numel() for p in view_learner.parameters() if p.requires_grad)
-    print(f"Total: {view_total_params}")
+
 
 
     view_optimizer = torch.optim.Adam(view_learner.parameters(), lr=args.view_lr)
@@ -425,3 +413,4 @@ def arg_parse():
 if __name__ == '__main__':
     args = arg_parse()
     run(args)
+
