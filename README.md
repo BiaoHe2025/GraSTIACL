@@ -95,7 +95,7 @@ Example arguments (implementations may vary; check `GraSTIACL.py` for supported 
 ## Citation
 
 If you use GraSTIACL in your research, please cite
-```bash
+```bibtex
 @article{He2025GraSTIACL,
   author  = {He, Biao and Ji, Erni and Zong, Xiaofen and Liang, Zhen and Huang, Gan and Zhang, Li},
   title   = {GraSTI-ACL: Graph Spatial-Temporal Infomax with Adversarial Contrastive Learning for Brain Disorders Diagnosis Based on Resting-State fMRI},
