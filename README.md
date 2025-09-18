@@ -1,7 +1,7 @@
 # GraSTIACL
 
 GraSTIACL is a graph-based deep learning framework for brain-network analysis. It integrates structural and functional connectivity with an information-bottleneck module for robust and interpretable classification. This repository supports experiments using ADNI and SRPBS (MDD) public datasets and an internal private dataset (BD).
-<img src="image.png" alt="替代文字" width="400"/>
+<img src="main_fig.jpg" alt="main_fig" width="400"/>
 
 ---
 
