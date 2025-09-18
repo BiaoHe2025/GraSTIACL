@@ -4,7 +4,7 @@ GraSTIACL is a graph-based deep learning framework for brain-network analysis. I
 
 <p align="center">
 <img src="main_fig.jpg" alt="main_fig" width="600"/>
-  <p><b>Figure.</b> main figure of GraSTIACL.</p>
+  <p align="center"><b>Figure.</b> main figure of GraSTIACL.</p>
 </p>
 
 ---
