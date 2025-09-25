@@ -102,10 +102,14 @@ Example arguments (implementations may vary; check `GraSTIACL.py` for supported 
 If you use GraSTIACL in your research, please cite
 ```bibtex
 @article{He2025GraSTIACL,
-  author  = {He, Biao and Ji, Erni and Zong, Xiaofen and Liang, Zhen and Huang, Gan and Zhang, Li},
+  author = {Biao He and Erni Ji and Xiaofen Zong and Zhen Liang and Gan Huang and Li Zhang},
   title   = {GraSTI-ACL: Graph Spatial-Temporal Infomax with Adversarial Contrastive Learning for Brain Disorders Diagnosis Based on Resting-State fMRI},
   journal = {Medical Image Analysis},
-  year    = {2025}
+  volume = {107},
+  pages = {103815},
+  year = {2026},
+  issn = {1361-8415},
+  doi = {https://doi.org/10.1016/j.media.2025.103815},
 }
 ```
 
